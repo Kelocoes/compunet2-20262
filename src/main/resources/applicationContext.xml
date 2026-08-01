@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- Bean simple con inyección por setter (property) -->
+    <bean id="myFirstBean" class="com.example.beans.MyFirstBean">
+        <property name="mensaje" value="Hola desde Spring! - Proyecto Fitness App" />
+    </bean>
+
+    <!-- ==================== REPOSITORIES ==================== -->
+
+    <bean id="userRepository" class="com.example.repository.impl.UserRepositoryImpl"
+          init-method="init" destroy-method="destroy" />
+
+    <bean id="routineRepository" class="com.example.repository.impl.RoutineRepositoryImpl"
+          init-method="init" destroy-method="destroy" />
+
+    <!-- ==================== SERVICES ==================== -->
+
+    <!-- Inyección de dependencias por constructor -->
+    <bean id="userService" class="com.example.service.impl.UserServiceImpl">
+        <constructor-arg ref="userRepository" />
+    </bean>
+
+    <!-- Inyección de dependencias por setter -->
+    <!-- <bean id="userService" class="com.example.service.impl.UserServiceImpl">
+        <property name="userRepository" ref="userRepository" />
+    </bean> -->
+
+    <!-- Inyección de dependencias por constructor -->
+    <bean id="routineService" class="com.example.service.impl.RoutineServiceImpl">
+        <constructor-arg ref="routineRepository" />
+    </bean>
+
+    <!-- Inyección de dependencias por setter -->
+    <!-- <bean id="routineService" class="com.example.service.impl.RoutineServiceImpl">
+        <property name="routineRepository" ref="routineRepository" />
+    </bean> -->
+
+</beans>

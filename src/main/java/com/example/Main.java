@@ -1,8 +1,28 @@
 package com.example;
 
-public class Main {
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.example.beans.MyFirstBean;
+import com.example.service.IRoutineService;
+import com.example.service.IUserService;
+
+public class Main {
     public static void main(String[] args) {
-        System.out.println("Inicio de la aplicación Standalone!");
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+
+        MyFirstBean myFirstBean = (MyFirstBean) context.getBean("myFirstBean");
+        System.out.println(myFirstBean.getMensaje());
+
+        IUserService userService = (IUserService) context.getBean("userService");
+        System.out.println("Users: " + userService.findAll());
+
+        IUserService userService2 = (IUserService) context.getBean("userService");
+        System.out.println("Are userService and userService2 the same instance? " + (userService == userService2));
+
+        IRoutineService routineService = (IRoutineService) context.getBean("routineService");
+        System.out.println("Routines: " + routineService.findAll());
+
+        ((ClassPathXmlApplicationContext) context).close();
     }
 }
