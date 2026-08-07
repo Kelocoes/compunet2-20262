@@ -4,7 +4,14 @@
     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!-- Definición básica de un Bean -->
-    <bean id="beanA" class="com.example.demo.BeanA">
+    <bean id="beanA" class="com.example.beans.BeanA">
         <property name="message" value="Valor de la propiedad 1" />
+    </bean>
+    <bean id="userRepositoryImpl" class="com.example.repository.impl.UserRepositoryImpl" init-method="init" destroy-method="destroy">
+    </bean>
+    <bean id="routineRepositoryImpl" class="com.example.repository.impl.RoutineRepositoryImpl">
+    </bean>
+    <bean id="userServiceImpl" class="com.example.services.impl.UserServiceImpl">
+        <constructor-arg ref="userRepositoryImpl" />
     </bean>
 </beans>

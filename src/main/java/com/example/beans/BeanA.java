@@ -1,5 +1,6 @@
 package com.example.beans;
 
+
 public class BeanA {
     private String message;
 
