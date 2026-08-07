@@ -6,9 +6,17 @@ import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Repository;
+
 import com.example.model.User;
 import com.example.repository.IUserRepository;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
+
+@Repository("userRepository")
+@Scope("singleton")
 public class UserRepositoryImpl implements IUserRepository {
 
     private List<User> users = new ArrayList<>();
@@ -16,6 +24,7 @@ public class UserRepositoryImpl implements IUserRepository {
     private Logger logger = Logger.getLogger(UserRepositoryImpl.class.getName());
 
     @Override
+    @PostConstruct
     public void init() {
         logger.info("UserRepositoryImpl initialized");
         logger.info("Connecting to the user database...");
@@ -85,6 +94,7 @@ public class UserRepositoryImpl implements IUserRepository {
     }
 
     @Override
+    @PreDestroy
     public void destroy() {
         logger.info("UserRepositoryImpl destroyed");
         logger.info("Disconnecting from the user database...");
@@ -92,3 +102,4 @@ public class UserRepositoryImpl implements IUserRepository {
         nextId = 1;
     }
 }
+

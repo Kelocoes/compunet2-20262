@@ -6,9 +6,17 @@ import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Repository;
+
 import com.example.model.Routine;
 import com.example.repository.IRoutineRepository;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
+
+@Repository("routineRepository")
+@Scope("singleton")
 public class RoutineRepositoryImpl implements IRoutineRepository {
 
     private List<Routine> routines = new ArrayList<>();
@@ -16,6 +24,7 @@ public class RoutineRepositoryImpl implements IRoutineRepository {
     private Logger logger = Logger.getLogger(RoutineRepositoryImpl.class.getName());
 
     @Override
+    @PostConstruct
     public void init() {
         logger.info("RoutineRepositoryImpl initialized");
         logger.info("Connecting to the routine database...");
@@ -85,6 +94,7 @@ public class RoutineRepositoryImpl implements IRoutineRepository {
     }
 
     @Override
+    @PreDestroy
     public void destroy() {
         logger.info("RoutineRepositoryImpl destroyed");
         logger.info("Disconnecting from the routine database...");
@@ -92,3 +102,4 @@ public class RoutineRepositoryImpl implements IRoutineRepository {
         nextId = 1;
     }
 }
+

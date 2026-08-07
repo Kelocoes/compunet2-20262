@@ -2,10 +2,16 @@ package com.example.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Service;
+
 import com.example.model.Routine;
 import com.example.repository.IRoutineRepository;
 import com.example.service.IRoutineService;
 
+@Service("routineService")
+@Scope("singleton")
 public class RoutineServiceImpl implements IRoutineService {
 
     private IRoutineRepository routineRepository;
@@ -15,6 +21,7 @@ public class RoutineServiceImpl implements IRoutineService {
     }
 
     // Constructor con argumento - para inyección por constructor
+    @Autowired
     public RoutineServiceImpl(IRoutineRepository routineRepository) {
         this.routineRepository = routineRepository;
     }
@@ -45,3 +52,4 @@ public class RoutineServiceImpl implements IRoutineService {
         return routineRepository.delete(id);
     }
 }
+

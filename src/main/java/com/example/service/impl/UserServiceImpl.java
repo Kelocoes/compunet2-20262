@@ -2,10 +2,16 @@ package com.example.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Service;
+
 import com.example.model.User;
 import com.example.repository.IUserRepository;
 import com.example.service.IUserService;
 
+@Service("userService")
+@Scope("singleton")
 public class UserServiceImpl implements IUserService {
 
     private IUserRepository userRepository;
@@ -15,6 +21,7 @@ public class UserServiceImpl implements IUserService {
     }
 
     // Constructor con argumento - para inyección por constructor
+    @Autowired
     public UserServiceImpl(IUserRepository userRepository) {
         this.userRepository = userRepository;
     }
@@ -45,3 +52,4 @@ public class UserServiceImpl implements IUserService {
         return userRepository.delete(id);
     }
 }
+

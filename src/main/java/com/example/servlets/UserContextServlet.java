@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
@@ -35,8 +36,8 @@ public class UserContextServlet extends HttpServlet {
     public void init() throws ServletException {
         super.init();
 
-        WebApplicationContext context = WebApplicationContextUtils
-                .getRequiredWebApplicationContext(getServletContext());
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(
+                com.example.config.AppConfig.class);
 
         this.userService = (IUserService) context.getBean("userService");
     }

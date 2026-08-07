@@ -1,15 +1,15 @@
 package com.example;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import com.example.config.AppConfig;
 import com.example.beans.MyFirstBean;
 import com.example.service.IRoutineService;
 import com.example.service.IUserService;
 
 public class Main {
     public static void main(String[] args) {
-        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
 
         MyFirstBean myFirstBean = (MyFirstBean) context.getBean("myFirstBean");
         System.out.println(myFirstBean.getMensaje());
@@ -23,6 +23,6 @@ public class Main {
         IRoutineService routineService = (IRoutineService) context.getBean("routineService");
         System.out.println("Routines: " + routineService.findAll());
 
-        ((ClassPathXmlApplicationContext) context).close();
+        context.close();
     }
 }
