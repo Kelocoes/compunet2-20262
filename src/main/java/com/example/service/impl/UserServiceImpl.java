@@ -3,6 +3,7 @@ package com.example.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +23,7 @@ public class UserServiceImpl implements IUserService {
 
     // Constructor con argumento - para inyección por constructor
     @Autowired
-    public UserServiceImpl(IUserRepository userRepository) {
+    public UserServiceImpl(@Qualifier("userRepositoryImpl") IUserRepository userRepository) {
         this.userRepository = userRepository;
     }
 

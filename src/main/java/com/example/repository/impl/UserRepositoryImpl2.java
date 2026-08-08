@@ -17,7 +17,7 @@ import jakarta.annotation.PreDestroy;
 
 @Repository
 @Scope("singleton")
-public class UserRepositoryImpl implements IUserRepository {
+public class UserRepositoryImpl2 implements IUserRepository {
 
     private List<User> users = new ArrayList<>();
     private int nextId = 1;

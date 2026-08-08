@@ -1,5 +1,6 @@
 package com.example.beans;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -7,7 +8,8 @@ import org.springframework.stereotype.Component;
 @Scope("singleton")
 public class MyFirstBean {
 
-    private String mensaje = "Hola desde Spring con Anotaciones! - Proyecto Fitness App";
+    @Value("Hola desde Spring con Anotaciones! - Proyecto Fitness App")
+    private String mensaje;
 
     public String getMensaje() {
         return mensaje;

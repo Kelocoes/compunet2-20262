@@ -2,6 +2,7 @@ package com.example.config;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 
 // Descomentar las siguientes importaciones si se desea usar la configuración basada en métodos @Bean:
 // import org.springframework.context.annotation.Bean;
@@ -15,6 +16,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @ComponentScan(basePackages = "com.example")
+@PropertySource("classpath:application.properties")
 public class AppConfig {
 
     // Ejemplo de cómo instanciar beans mediante métodos @Bean en la clase de configuración:

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
 
@@ -23,15 +24,30 @@ public class RoutineRepositoryImpl implements IRoutineRepository {
     private int nextId = 1;
     private Logger logger = Logger.getLogger(RoutineRepositoryImpl.class.getName());
 
+    @Value("#{'prod'.equals('${app.environment}')}")
+    private boolean isProduction;
+
+    @Value("${app.db.url:jdbc:h2:mem:testdb}")
+    private String databaseUrl;
+
+    @Value("#{T(java.util.UUID).randomUUID().toString()}")
+    private String randomUUID;
+
     @Override
     @PostConstruct
     public void init() {
         logger.info("RoutineRepositoryImpl initialized");
         logger.info("Connecting to the routine database...");
+        logger.info("Database URL: " + databaseUrl);
+        logger.info("Is production: " + isProduction);
+        logger.info("Random UUID: " + randomUUID);
 
-        save(new Routine(0, 1, "Rutina Hipertrofia Pecho y Triceps", "Rutina enfocada en fuerza y volumen de empuje", new Date(), new Date()));
-        save(new Routine(0, 1, "Rutina Cardio HIIT", "Entrenamiento de alta intensidad para quema de grasa", new Date(), new Date()));
-        save(new Routine(0, 2, "Rutina Pierna Completa", "Rutina intensa para cuadriceps, isquios y gemelos", new Date(), new Date()));
+        save(new Routine(0, 1, "Rutina Hipertrofia Pecho y Triceps", "Rutina enfocada en fuerza y volumen de empuje",
+                new Date(), new Date()));
+        save(new Routine(0, 1, "Rutina Cardio HIIT", "Entrenamiento de alta intensidad para quema de grasa", new Date(),
+                new Date()));
+        save(new Routine(0, 2, "Rutina Pierna Completa", "Rutina intensa para cuadriceps, isquios y gemelos",
+                new Date(), new Date()));
     }
 
     @Override
@@ -102,4 +118,3 @@ public class RoutineRepositoryImpl implements IRoutineRepository {
         nextId = 1;
     }
 }
-
