@@ -1,8 +1,26 @@
 ```mermaid
 erDiagram
 
+    ROLE {
+        int id PK
+        varchar name
+    }
+
+    PERMISSION {
+        int id PK
+        varchar name
+        text description
+    }
+
+    ROLE_PERMISSION {
+        int id PK
+        int roleId FK
+        int permissionId FK
+    }
+
     USER {
         int id PK
+        int roleId FK
         varchar name
         varchar email UK
         varchar password
@@ -74,6 +92,11 @@ erDiagram
         timestamp startedAt
         timestamp completedAt
     }
+
+    ROLE ||--o{ USER : assigns
+    ROLE }o--o{ PERMISSION : has
+    ROLE ||--o{ ROLE_PERMISSION : contains
+    PERMISSION ||--o{ ROLE_PERMISSION : assigned_to
 
     USER ||--o{ ROUTINE : creates
 
