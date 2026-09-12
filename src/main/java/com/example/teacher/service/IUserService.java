@@ -1,5 +1,6 @@
 package com.example.teacher.service;
 
+import com.example.teacher.exceptions.TransactionTestException;
 import com.example.teacher.model.User;
 import org.springframework.data.domain.Page;
 
@@ -10,4 +11,5 @@ public interface IUserService {
     User create(User user, Integer roleId);
     Page<User> findAll(int page, int size, String sortBy, String direction);
     Optional<User> findById(Integer id);
+    List<User> saveAllUsers(List<User> users) throws TransactionTestException;
 }

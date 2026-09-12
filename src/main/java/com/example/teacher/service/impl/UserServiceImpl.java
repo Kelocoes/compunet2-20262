@@ -1,5 +1,6 @@
 package com.example.teacher.service.impl;
 
+import com.example.teacher.exceptions.TransactionTestException;
 import com.example.teacher.model.Role;
 import com.example.teacher.model.User;
 import com.example.teacher.repository.IUserRepository;
@@ -12,6 +13,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -57,5 +59,20 @@ public class UserServiceImpl implements IUserService {
     public Optional<User> findById(Integer id) {
         log.info("Finding user by id: {}", id);
         return userRepository.findById(id);
+    }
+
+    @Override
+    // @Transactional(rollbackFor = TransactionTestException.class)
+    public List<User> saveAllUsers(List<User> users) throws TransactionTestException {
+        log.info("Saving list of {} users with transaction", users.size());
+        for (User user : users) {
+            // Simulamos una validación que lanza nuestra checked exception si el email contiene 'error' o 'fail'
+            if (user.getEmail() != null && user.getEmail().contains("error")) {
+                log.error("Error provocado al procesar usuario con email: {}", user.getEmail());
+                throw new TransactionTestException("Fallo intencional para probar rollbackFor con TransactionTestException en: " + user.getEmail());
+            }
+            userRepository.save(user);
+        }
+        return users;
     }
 }

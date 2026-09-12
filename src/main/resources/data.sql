@@ -24,40 +24,40 @@ INSERT INTO role_permissions (id, role_id, permission_id) VALUES (5, 2, 3);
 INSERT INTO role_permissions (id, role_id, permission_id) VALUES (6, 2, 5);
 
 -- =============================================
--- USUARIOS (3 registros)
+-- USUARIOS (11 registros)
 -- =============================================
-INSERT INTO users (id, role_id, name, email, password, created_at, updated_at) 
-VALUES (1, 1, 'Carlos Gomez', 'carlos.gomez@example.com', 'admin123', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO users (role_id, name, email, password, created_at, updated_at) 
+VALUES (1, 'Carlos Gomez', 'carlos.gomez@example.com', 'admin123', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
-INSERT INTO users (id, role_id, name, email, password, created_at, updated_at) 
-VALUES (2, 2, 'Laura Perez', 'laura.perez@example.com', 'user123', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO users (role_id, name, email, password, created_at, updated_at) 
+VALUES (2, 'Laura Perez', 'laura.perez@example.com', 'user123', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
-INSERT INTO users (id, role_id, name, email, password, created_at, updated_at) 
-VALUES (3, 2, 'Mateo Rios', 'mateo.rios@example.com', 'user456', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO users (role_id, name, email, password, created_at, updated_at) 
+VALUES (2, 'Mateo Rios', 'mateo.rios@example.com', 'user456', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
-INSERT INTO users (id, role_id, name, email, password, created_at, updated_at) 
-VALUES (4, 2, 'Mateo Rios', 'mateo.rios1@example.com', 'user456', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO users (role_id, name, email, password, created_at, updated_at) 
+VALUES (2, 'Mateo Rios', 'mateo.rios1@example.com', 'user456', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
-INSERT INTO users (id, role_id, name, email, password, created_at, updated_at) 
-VALUES (5, 2, 'Mateo Rios', 'mateo.rios2@example.com', 'user456', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO users (role_id, name, email, password, created_at, updated_at) 
+VALUES (2, 'Mateo Rios', 'mateo.rios2@example.com', 'user456', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
-INSERT INTO users (id, role_id, name, email, password, created_at, updated_at) 
-VALUES (6, 2, 'Mateo Rios', 'mateo.rios3@example.com', 'user456', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO users (role_id, name, email, password, created_at, updated_at) 
+VALUES (2, 'Mateo Rios', 'mateo.rios3@example.com', 'user456', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
-INSERT INTO users (id, role_id, name, email, password, created_at, updated_at) 
-VALUES (7, 2, 'Mateo Rios', 'mateo.rios4@example.com', 'user456', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO users (role_id, name, email, password, created_at, updated_at) 
+VALUES (2, 'Mateo Rios', 'mateo.rios4@example.com', 'user456', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
-INSERT INTO users (id, role_id, name, email, password, created_at, updated_at) 
-VALUES (8, 2, 'Mateo Rios', 'mateo.rios5@example.com', 'user456', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO users (role_id, name, email, password, created_at, updated_at) 
+VALUES (2, 'Mateo Rios', 'mateo.rios5@example.com', 'user456', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
-INSERT INTO users (id, role_id, name, email, password, created_at, updated_at) 
-VALUES (9, 2, 'Mateo Rios', 'mateo.rios6@example.com', 'user456', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO users (role_id, name, email, password, created_at, updated_at) 
+VALUES (2, 'Mateo Rios', 'mateo.rios6@example.com', 'user456', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
-INSERT INTO users (id, role_id, name, email, password, created_at, updated_at) 
-VALUES (10, 2, 'Mateo Rios', 'mateo.rios7@example.com', 'user456', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO users (role_id, name, email, password, created_at, updated_at) 
+VALUES (2, 'Mateo Rios', 'mateo.rios7@example.com', 'user456', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
-INSERT INTO users (id, role_id, name, email, password, created_at, updated_at) 
-VALUES (11, 2, 'Mateo Rios', 'mateo.rios8@example.com', 'user456', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO users (role_id, name, email, password, created_at, updated_at) 
+VALUES (2, 'Mateo Rios', 'mateo.rios8@example.com', 'user456', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 -- =============================================
 -- EJERCICIOS (3 registros)

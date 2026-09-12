@@ -48,4 +48,32 @@ public class UserController {
                 .build();
         return userService.create(newUser, roleId);
     }
+
+    @GetMapping("/test-transaction")
+    public ResponseEntity<?> testTransaction() throws com.example.teacher.exceptions.TransactionTestException {
+        // Creamos una lista de usuarios falsos cortos dentro del cuerpo del método
+        List<User> fakeUsers = List.of(
+                User.builder()
+                        .name("Usuario Valido 1")
+                        .email("user1-" + UUID.randomUUID() + "@gmail.com")
+                        .password("123456")
+                        .createdAt(new Timestamp(System.currentTimeMillis()))
+                        .build(),
+                User.builder()
+                        .name("Usuario Valido 2")
+                        .email("user2-" + UUID.randomUUID() + "@gmail.com")
+                        .password("123456")
+                        .createdAt(new Timestamp(System.currentTimeMillis()))
+                        .build(),
+                User.builder()
+                        .name("Usuario Que Falla")
+                        .email("error-" + UUID.randomUUID() + "@gmail.com") // Este email dispara TransactionTestException
+                        .password("123456")
+                        .createdAt(new Timestamp(System.currentTimeMillis()))
+                        .build()
+        );
+
+        List<User> savedUsers = userService.saveAllUsers(fakeUsers);
+        return ResponseEntity.ok(savedUsers);
+    }
 }
