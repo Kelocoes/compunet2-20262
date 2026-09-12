@@ -7,6 +7,10 @@ import com.example.teacher.service.IRoleService;
 import com.example.teacher.service.IUserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,9 +35,22 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public List<User> findAll() {
-        log.info("Fetching all users");
-        return userRepository.findAll();
+    public Page<User> findAll(int page, int size, String sortBy, String direction) {
+        log.info("Fetching users page: {}, size: {}, sortBy: {}, direction: {}", page, size, sortBy, direction);
+        
+        // Determinamos la dirección del ordenamiento de manera segura
+        Sort.Direction sortDirection = direction.equalsIgnoreCase("desc")
+                ? Sort.Direction.DESC
+                : Sort.Direction.ASC;
+
+        // Construimos el objeto Sort por la propiedad indicada
+        Sort sort = Sort.by(sortDirection, sortBy);
+
+        // Instanciamos el Pageable combinando página, tamaño y orden
+        Pageable pageable = PageRequest.of(page, size, sort);
+
+        // Ejecutamos la consulta en el repositorio
+        return userRepository.findAll(pageable);
     }
 
     @Override

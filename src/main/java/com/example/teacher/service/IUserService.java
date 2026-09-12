@@ -1,12 +1,13 @@
 package com.example.teacher.service;
 
 import com.example.teacher.model.User;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface IUserService {
     User create(User user, Integer roleId);
-    List<User> findAll();
+    Page<User> findAll(int page, int size, String sortBy, String direction);
     Optional<User> findById(Integer id);
 }

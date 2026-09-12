@@ -3,6 +3,8 @@ package com.example.teacher.controller;
 import com.example.teacher.model.User;
 import com.example.teacher.service.IUserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,8 +22,14 @@ public class UserController {
     private final IUserService userService;
 
     @GetMapping
-    public List<User> findAll() {
-        return userService.findAll();
+    public ResponseEntity<Page<User>> findAll() {
+        int page = 0;
+        int size = 10;
+        String sortBy = "id";
+        String direction = "asc";
+
+        Page<User> userPage = userService.findAll(page, size, sortBy, direction);
+        return ResponseEntity.ok(userPage);
     }
 
     @GetMapping("/{id}")
