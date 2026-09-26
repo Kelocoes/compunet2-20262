@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Users</title>
+        <link rel="stylesheet" th:href="@{/css/components/sidebar.css}" />
+        <link rel="stylesheet" th:href="@{/css/users/list.css}" />
+    </head>
+    <body style="display: flex; margin: 0;">
+        <div th:replace="~{components/sidebar :: sidebar}"></div>
+        <div style="padding: 20px; flex: 1;">
+            <h1>Users</h1>
+            <div>
+                <a th:href="@{/mvc/users/add}">Add User</a>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="user : ${users}">
+                        <td th:text="${user.id}">1</td>
+                        <td th:text="${user.name}">John Doe</td>
+                        <td th:text="${user.email}">john.doe@example.com</td>
+                        <td>
+                            <a th:href="@{/mvc/users/edit/{id}(id=${user.id})}">Edit</a>
+                            <a th:href="@{/mvc/users/delete/{id}(id=${user.id})}">Delete</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>
