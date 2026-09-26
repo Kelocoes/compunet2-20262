@@ -10,6 +10,9 @@ import java.util.Optional;
 public interface IUserService {
     User create(User user, Integer roleId);
     Page<User> findAll(int page, int size, String sortBy, String direction);
+    List<User> findAll();
     Optional<User> findById(Integer id);
+    User update(Integer id, User user, Integer roleId);
+    void deleteById(Integer id);
     List<User> saveAllUsers(List<User> users) throws TransactionTestException;
 }
