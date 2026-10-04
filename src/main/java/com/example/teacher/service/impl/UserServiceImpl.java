@@ -14,6 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
@@ -27,6 +28,7 @@ public class UserServiceImpl implements IUserService {
 
     private final IUserRepository userRepository;
     private final IRoleService roleService;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public User create(User user, Integer roleId) {
@@ -50,6 +52,9 @@ public class UserServiceImpl implements IUserService {
         if (user.getCreatedAt() == null) {
             user.setCreatedAt(new Timestamp(System.currentTimeMillis()));
         }
+
+        String hashedPassword = passwordEncoder.encode(user.getPassword());
+        user.setPassword(hashedPassword);
         return userRepository.save(user);
     }
 
@@ -147,5 +152,10 @@ public class UserServiceImpl implements IUserService {
             userRepository.save(user);
         }
         return users;
+    }
+
+    @Override
+    public Optional<User> findByEmail(String email) {
+        return this.userRepository.findByEmail(email);
     }
 }

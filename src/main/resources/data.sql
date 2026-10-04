@@ -27,37 +27,37 @@ INSERT INTO role_permissions (id, role_id, permission_id) VALUES (6, 2, 5);
 -- USUARIOS (11 registros)
 -- =============================================
 INSERT INTO users (role_id, name, email, password, created_at, updated_at) 
-VALUES (1, 'Carlos Gomez', 'carlos.gomez@example.com', 'admin123', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+VALUES (1, 'Carlos Gomez', 'carlos.gomez@example.com', '$2a$10$BvqbMz0mYdGC/d9IFRd6Ouxq.qIC9kXz77x/A78lhyFToIOYZmwse', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 INSERT INTO users (role_id, name, email, password, created_at, updated_at) 
-VALUES (2, 'Laura Perez', 'laura.perez@example.com', 'user123', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+VALUES (2, 'Laura Perez', 'laura.perez@example.com', '$2a$10$BvqbMz0mYdGC/d9IFRd6Ouxq.qIC9kXz77x/A78lhyFToIOYZmwse', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 INSERT INTO users (role_id, name, email, password, created_at, updated_at) 
-VALUES (2, 'Mateo Rios', 'mateo.rios@example.com', 'user456', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+VALUES (2, 'Mateo Rios', 'mateo.rios@example.com', '$2a$10$BvqbMz0mYdGC/d9IFRd6Ouxq.qIC9kXz77x/A78lhyFToIOYZmwse', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 INSERT INTO users (role_id, name, email, password, created_at, updated_at) 
-VALUES (2, 'Mateo Rios', 'mateo.rios1@example.com', 'user456', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+VALUES (2, 'Mateo Rios', 'mateo.rios1@example.com', '$2a$10$BvqbMz0mYdGC/d9IFRd6Ouxq.qIC9kXz77x/A78lhyFToIOYZmwse', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 INSERT INTO users (role_id, name, email, password, created_at, updated_at) 
-VALUES (2, 'Mateo Rios', 'mateo.rios2@example.com', 'user456', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+VALUES (2, 'Mateo Rios', 'mateo.rios2@example.com', '$2a$10$BvqbMz0mYdGC/d9IFRd6Ouxq.qIC9kXz77x/A78lhyFToIOYZmwse', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 INSERT INTO users (role_id, name, email, password, created_at, updated_at) 
-VALUES (2, 'Mateo Rios', 'mateo.rios3@example.com', 'user456', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+VALUES (2, 'Mateo Rios', 'mateo.rios3@example.com', '$2a$10$BvqbMz0mYdGC/d9IFRd6Ouxq.qIC9kXz77x/A78lhyFToIOYZmwse', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 INSERT INTO users (role_id, name, email, password, created_at, updated_at) 
-VALUES (2, 'Mateo Rios', 'mateo.rios4@example.com', 'user456', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+VALUES (2, 'Mateo Rios', 'mateo.rios4@example.com', '$2a$10$BvqbMz0mYdGC/d9IFRd6Ouxq.qIC9kXz77x/A78lhyFToIOYZmwse', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 INSERT INTO users (role_id, name, email, password, created_at, updated_at) 
-VALUES (2, 'Mateo Rios', 'mateo.rios5@example.com', 'user456', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+VALUES (2, 'Mateo Rios', 'mateo.rios5@example.com', '$2a$10$BvqbMz0mYdGC/d9IFRd6Ouxq.qIC9kXz77x/A78lhyFToIOYZmwse', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 INSERT INTO users (role_id, name, email, password, created_at, updated_at) 
-VALUES (2, 'Mateo Rios', 'mateo.rios6@example.com', 'user456', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+VALUES (2, 'Mateo Rios', 'mateo.rios6@example.com', '$2a$10$BvqbMz0mYdGC/d9IFRd6Ouxq.qIC9kXz77x/A78lhyFToIOYZmwse', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 INSERT INTO users (role_id, name, email, password, created_at, updated_at) 
-VALUES (2, 'Mateo Rios', 'mateo.rios7@example.com', 'user456', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+VALUES (2, 'Mateo Rios', 'mateo.rios7@example.com', '$2a$10$BvqbMz0mYdGC/d9IFRd6Ouxq.qIC9kXz77x/A78lhyFToIOYZmwse', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 INSERT INTO users (role_id, name, email, password, created_at, updated_at) 
-VALUES (2, 'Mateo Rios', 'mateo.rios8@example.com', 'user456', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+VALUES (2, 'Mateo Rios', 'mateo.rios8@example.com', '$2a$10$BvqbMz0mYdGC/d9IFRd6Ouxq.qIC9kXz77x/A78lhyFToIOYZmwse', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 -- =============================================
 -- EJERCICIOS (3 registros)

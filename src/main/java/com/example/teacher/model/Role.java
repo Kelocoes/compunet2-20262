@@ -27,7 +27,7 @@ public class Role {
 
     @ToString.Exclude
     @JsonIgnore
-    @OneToMany(mappedBy = "role")
+    @OneToMany(mappedBy = "role", fetch = FetchType.EAGER)
     private List<RolePermission> rolePermissions;
 
     /*
