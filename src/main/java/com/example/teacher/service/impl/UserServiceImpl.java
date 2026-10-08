@@ -139,13 +139,21 @@ public class UserServiceImpl implements IUserService {
     public List<User> saveAllUsers(List<User> users) throws TransactionTestException {
         log.info("Saving list of {} users with transaction", users.size());
         for (User user : users) {
-            // Simulamos una validación que lanza nuestra checked exception si el email contiene 'error' o 'fail'
+            // Simulamos una validación que lanza nuestra checked exception si el email
+            // contiene 'error' o 'fail'
             if (user.getEmail() != null && user.getEmail().contains("error")) {
                 log.error("Error provocado al procesar usuario con email: {}", user.getEmail());
-                throw new TransactionTestException("Fallo intencional para probar rollbackFor con TransactionTestException en: " + user.getEmail());
+                throw new TransactionTestException(
+                        "Fallo intencional para probar rollbackFor con TransactionTestException en: "
+                                + user.getEmail());
             }
             userRepository.save(user);
         }
         return users;
+    }
+
+    @Override
+    public Optional<User> findByEmail(String email) {
+        return this.userRepository.findByEmail(email);
     }
 }

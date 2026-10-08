@@ -2,6 +2,8 @@ package com.example.teacher.controller.mvc;
 
 import java.sql.Timestamp;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,10 +32,10 @@ public class UserMVCController {
     private final IUserService userService;
     private final IRoleService roleService;
 
-
     @GetMapping
     public String getAll(Model model) {
         model.addAttribute("users", userService.findAll());
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         return "users/list";
     }
 
