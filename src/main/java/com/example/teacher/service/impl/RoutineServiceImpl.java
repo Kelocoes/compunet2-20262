@@ -56,6 +56,18 @@ public class RoutineServiceImpl implements IRoutineService {
     }
 
     @Override
+    public List<Routine> findByUserId(Integer userId) {
+        log.info("Fetching routines for userId: {}", userId);
+        return routineRepository.findByUserId(userId);
+    }
+
+    @Override
+    public List<Routine> searchByName(String name) {
+        log.info("Searching routines containing name: {}", name);
+        return routineRepository.findByNameContainingIgnoreCase(name);
+    }
+
+    @Override
     public Optional<Routine> findById(Integer id) {
         log.info("Finding routine by id: {}", id);
         return routineRepository.findById(id);
