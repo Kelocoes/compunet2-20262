@@ -1,6 +1,7 @@
 package com.example.teacher.config;
 
-import com.example.teacher.security.ApiKeyAuthFilter;
+import com.example.teacher.security.JwtAuthenticationFilter;
+import com.example.teacher.service.IJwtService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -22,20 +23,21 @@ public class WebSecurityConfig {
     }
 
     @Bean
-    public ApiKeyAuthFilter apiKeyAuthFilter() {
-        return new ApiKeyAuthFilter();
+    public JwtAuthenticationFilter jwtAuthenticationFilter(IJwtService jwtService) {
+        return new JwtAuthenticationFilter(jwtService);
     }
 
     @Bean
     @Order(1)
-    public SecurityFilterChain restSecurityFilterChain(HttpSecurity http, ApiKeyAuthFilter apiKeyAuthFilter) throws Exception {
+    public SecurityFilterChain restSecurityFilterChain(HttpSecurity http, JwtAuthenticationFilter jwtAuthenticationFilter) throws Exception {
         return http
                 .securityMatcher("/rest/**")
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/rest/public/**").permitAll()
                         .anyRequest().authenticated())
-                .addFilterBefore(apiKeyAuthFilter, UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
 
