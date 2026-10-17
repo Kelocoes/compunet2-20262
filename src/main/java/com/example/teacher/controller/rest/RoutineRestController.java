@@ -3,6 +3,7 @@ package com.example.teacher.controller.rest;
 import com.example.teacher.controller.rest.dto.RoutineRequest;
 import com.example.teacher.controller.rest.dto.RoutineResponse;
 import com.example.teacher.exceptions.ResourceNotFoundException;
+import com.example.teacher.mappers.RoutineMapper;
 import com.example.teacher.model.Routine;
 import com.example.teacher.service.IRoutineService;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,7 @@ import java.util.List;
 public class RoutineRestController {
 
     private final IRoutineService routineService;
+    private final RoutineMapper routineMapper;
 
     @GetMapping
     public ResponseEntity<List<RoutineResponse>> getAllRoutines(
@@ -31,7 +33,7 @@ public class RoutineRestController {
         }
 
         List<RoutineResponse> response = routines.stream()
-                .map(RoutineResponse::fromEntity)
+                .map(routineMapper::toResponse)
                 .toList();
 
         return ResponseEntity.status(HttpStatus.OK).body(response);
@@ -42,14 +44,14 @@ public class RoutineRestController {
         Routine routine = routineService.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Routine not found with id: " + id));
 
-        return ResponseEntity.status(HttpStatus.OK).body(RoutineResponse.fromEntity(routine));
+        return ResponseEntity.status(HttpStatus.OK).body(routineMapper.toResponse(routine));
     }
 
     @GetMapping("/user/{userId}")
     public ResponseEntity<List<RoutineResponse>> getRoutinesByUser(@PathVariable Integer userId) {
         List<RoutineResponse> response = routineService.findByUserId(userId)
                 .stream()
-                .map(RoutineResponse::fromEntity)
+                .map(routineMapper::toResponse)
                 .toList();
 
         return ResponseEntity.status(HttpStatus.OK).body(response);
@@ -57,13 +59,9 @@ public class RoutineRestController {
 
     @PostMapping
     public ResponseEntity<RoutineResponse> createRoutine(@RequestBody RoutineRequest request) {
-        Routine routine = Routine.builder()
-                .name(request.getName())
-                .description(request.getDescription())
-                .build();
-
+        Routine routine = routineMapper.toEntity(request);
         Routine created = routineService.create(routine, request.getUserId());
-        return ResponseEntity.status(HttpStatus.CREATED).body(RoutineResponse.fromEntity(created));
+        return ResponseEntity.status(HttpStatus.CREATED).body(routineMapper.toResponse(created));
     }
 
     @PutMapping("/{id}")
@@ -71,13 +69,9 @@ public class RoutineRestController {
             @PathVariable Integer id,
             @RequestBody RoutineRequest request) {
 
-        Routine routine = Routine.builder()
-                .name(request.getName())
-                .description(request.getDescription())
-                .build();
-
+        Routine routine = routineMapper.toEntity(request);
         Routine updated = routineService.update(id, routine, request.getUserId());
-        return ResponseEntity.status(HttpStatus.OK).body(RoutineResponse.fromEntity(updated));
+        return ResponseEntity.status(HttpStatus.OK).body(routineMapper.toResponse(updated));
     }
 
     @DeleteMapping("/{id}")
