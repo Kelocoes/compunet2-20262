@@ -2,9 +2,11 @@ package com.example.teacher.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -15,7 +17,7 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
-@EnableMethodSecurity 
+@EnableMethodSecurity
 public class WebSecurityConfig {
     // @Bean
     // public UserDetailsService userDetailsService() {
@@ -40,8 +42,22 @@ public class WebSecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    @Order(1)
+    public SecurityFilterChain securityRestFilterChain(HttpSecurity http) throws Exception {
         return http
+                .securityMatcher("/rest/**")
+                .csrf(csrf -> csrf.disable())
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .authorizeHttpRequests(auth -> auth
+                        .anyRequest().permitAll())
+                .build();
+    }
+
+    @Bean
+    @Order(2)
+    public SecurityFilterChain securityMVCFilterChain(HttpSecurity http) throws Exception {
+        return http
+                .securityMatcher("/mvc/**")
                 .authorizeHttpRequests(auth -> auth
                         // Rutas públicas accesibles sin autenticación
                         .requestMatchers("/css/**", "/js/**", "/images/**").permitAll()

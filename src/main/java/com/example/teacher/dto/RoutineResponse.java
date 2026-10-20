@@ -7,6 +7,7 @@ import lombok.Data;
 
 @Data
 @Builder
+//DTOS de salida
 public class RoutineResponse {
 
     private Integer id;

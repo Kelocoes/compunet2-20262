@@ -74,14 +74,14 @@ VALUES (3, 'Press de Banca', 'Press plano con barra para pectoral y tríceps', '
 -- =============================================
 -- RUTINAS (3 registros)
 -- =============================================
-INSERT INTO routines (id, user_id, name, description, created_at, updated_at) 
-VALUES (1, 2, 'Día de Pierna', 'Rutina de hipertrofia para tren inferior', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO routines ( user_id, name, description, created_at, updated_at) 
+VALUES ( 2, 'Día de Pierna', 'Rutina de hipertrofia para tren inferior', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
-INSERT INTO routines (id, user_id, name, description, created_at, updated_at) 
-VALUES (2, 2, 'Cardio Quema Grasa', 'Sesión aeróbica matutina', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO routines ( user_id, name, description, created_at, updated_at) 
+VALUES (2, 'Cardio Quema Grasa', 'Sesión aeróbica matutina', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
-INSERT INTO routines (id, user_id, name, description, created_at, updated_at) 
-VALUES (3, 3, 'Torso y Pecho', 'Rutina de fuerza para tren superior', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO routines ( user_id, name, description, created_at, updated_at) 
+VALUES (3, 'Torso y Pecho', 'Rutina de fuerza para tren superior', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 -- =============================================
 -- RUTINA_EJERCICIOS (3 registros)
