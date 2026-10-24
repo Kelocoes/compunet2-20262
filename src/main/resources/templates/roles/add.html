@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Add Role</title>
+        <link rel="stylesheet" th:href="@{/css/components/sidebar.css}" />
+        <link rel="stylesheet" th:href="@{/css/roles/add.css}" />
+    </head>
+    <body style="display: flex; margin: 0;">
+        <div th:replace="~{components/sidebar :: sidebar}"></div>
+
+        <div style="padding: 20px; flex: 1;">
+            <h2>Add Role</h2>
+            <div class="form-container">
+                <form th:action="@{/mvc/roles/add}" method="post">
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            maxlength="50"
+                            required
+                        />
+                    </div>
+                    <button type="submit">Save</button>
+                    <a th:href="@{/mvc/roles}" style="margin-left: 10px;">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

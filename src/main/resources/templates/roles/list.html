@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Roles</title>
+        <link rel="stylesheet" th:href="@{/css/components/sidebar.css}" />
+        <link rel="stylesheet" th:href="@{/css/roles/list.css}" />
+    </head>
+    <body style="display: flex; margin: 0;">
+        <div th:replace="~{components/sidebar :: sidebar}"></div>
+        <div style="padding: 20px; flex: 1;">
+            <h1>Roles</h1>
+            <div>
+                <a th:href="@{/mvc/roles/add}">Add Role</a>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="role : ${roles}">
+                        <td th:text="${role.id}">1</td>
+                        <td th:text="${role.name}">ROLE_ADMIN</td>
+                        <td>
+                            <a th:href="@{/mvc/roles/edit/{id}(id=${role.id})}">Edit</a>
+                            <a th:href="@{/mvc/roles/delete/{id}(id=${role.id})}">Delete</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>
