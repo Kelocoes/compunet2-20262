@@ -1,10 +1,15 @@
+import { useNavigate } from 'react-router';
 import Button from '../../components/Button';
 
 export default function SignIn() {
+    const navigate = useNavigate();
+
     const handleSubmit = (e) => {
         e.preventDefault();
         const data = Object.fromEntries(new FormData(e.target));
         console.log('SignIn data:', data);
+        // replace: Atrás no vuelve al formulario de login
+        navigate('/', { replace: true });
     };
 
     return (
